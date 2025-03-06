@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="./src/styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Todo List</h1>
+      <!-- Add Task-->
+      <div class="add-task">
+        <input id="task-input" placeholder="Enter new task" type="text" />
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <!-- Filter Task-->
+      <div class="filter-tasks">
+        <button data-filter="all">All</button>
+        <button data-filter="active">Done</button>
+        <button data-filter="completed">Active</button>
+      </div>
+
+      <!-- Todo List -->
+      <ul id="task-list">
+        <!-- Tasks will be dynamically added here -->
+      </ul>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
