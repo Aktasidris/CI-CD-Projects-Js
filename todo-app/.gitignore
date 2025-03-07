@@ -1,21 +1,29 @@
-# Node.js
-node_modules/
+# Node.js dependencies
+/node_modules/
 
-# Tailwind CSS build dosyaları
-/dist/
-*.css
-
-# Log dosyaları
-*.log
-
-# Environment değişkenleri dosyası (gizli bilgileri içeriyor olabilir)
-.env
-
-# npm-debug.log veya yarn-error.log dosyaları
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Operating system-specific files
+# Tailwind CSS files
+/public/css/
+/public/js/
+
+# Build directories
+/dist/
+/build/
+/out/
+/.esbuild/
+/.cache/
+
+# Operating system files
 .DS_Store
 Thumbs.db
+
+# IDE files
+.vscode/
+/.idea/
+
+# dotenv files
+.env
