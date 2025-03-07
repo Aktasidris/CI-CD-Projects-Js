@@ -4,29 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoApp</title>
-    <link rel="stylesheet" href="./src/styles/main.css" />
+    <link href="./src/styles/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="container">
-      <h1>My Todo List</h1>
+    <div class="container max-w-2xl m-auto p-5 shadow-2xl rounded-2xl">
+      <h1 class="p-2 mb-2.5 text-2xl content-center text-fuchsia-900">
+        My Todo List
+      </h1>
+      <hr class="text-fuchsia-900" />
       <!-- Add Task-->
-      <div class="add-task">
-        <input id="task-input" placeholder="Enter new task" type="text" />
-        <button id="add-task-btn">Add Task</button>
+      <div class="add-task grid grid-cols-6 gap-4 mb-3 p-3">
+        <input
+          class="focus:outline-2 focus:outline-emerald-500 p-2 col-span-5"
+          id="task-input"
+          required
+          placeholder="Enter new task"
+          type="text"
+        />
+        <!-- required belitmek yanlış çünkü required sace formlarda submit olayı gerçekleşirken çalışır-->
+        <button
+          class="text-gray-600 col-span-1 text-4xl hover:text-green-400"
+          id="add-task-btn"
+        >
+          +
+        </button>
       </div>
+      <!-- Todo List -->
+      <ul
+        id="task-list"
+        class="my-2.5 h-60 bg-yellow-100 p-5 rounded font-mono"
+      >
+        <!-- Tasks will be dynamically added here -->
+        <li class="task completed text-red-600 line-through">Completed Task</li>
+        <li class="task active text-green-600">Active Task</li>
+      </ul>
 
       <!-- Filter Task-->
-      <div class="filter-tasks">
-        <button data-filter="all">All</button>
-        <button data-filter="active">Done</button>
-        <button data-filter="completed">Active</button>
+      <div class="filter-tasks p-2 flex justify-center text-xl gap-1.5">
+        <button data-filter="all" class="text-blue-600 hover:underline">
+          All
+        </button>
+        <button data-filter="active" class="text-red-600 hover:underline">
+          Done
+        </button>
+        <button data-filter="completed" class="text-green-600 hover:underline">
+          Active
+        </button>
       </div>
-
-      <!-- Todo List -->
-      <ul id="task-list">
-        <!-- Tasks will be dynamically added here -->
-      </ul>
     </div>
-    <script src="app.js"></script>
+    <script src="./src/app.js"></script>
   </body>
 </html>

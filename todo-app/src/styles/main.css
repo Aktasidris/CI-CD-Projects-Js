@@ -1,50 +1,5 @@
+@import "tailwindcss";
 body {
   font-family: Arial, sans-serif;
-  background: #f7f7f7;
   padding: 20px;
-}
-
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-h1 {
-  text-align: center;
-}
-.add-task {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-#task-input {
-  flex: 1;
-  padding: 10px;
-}
-#add-task-btn {
-  padding: 10px 20px;
-}
-.filter-tasks {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-#task-list {
-  list-style: none;
-  padding: 0;
-}
-.task-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-.task-item.completed .task-text {
-  text-decoration: line-through;
-  color: #888;
 }
