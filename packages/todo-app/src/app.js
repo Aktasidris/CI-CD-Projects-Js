@@ -1,65 +1,88 @@
-/**
- ##features/add-task function
-    get input element and with .value() method get input value
-    get addtask-btn by_ıd and create eventlistner using click event.
-    control the ınput.value is empty after using trim() method
-    if(true)
-        create li element and assing task.textContent input.value
-        add css classes
-        add get task lint container to append a child using appendChild() method
-        dont forget clear ınput value assing  "" {empty string}
- */
-
-document.getElementById("add-task-btn").addEventListener("click", function () {
-  let taskInput = document.getElementById("task-input").value;
-  if (taskInput.trim() !== "") {
-    let newTask = document.createElement("li");
-    newTask.textContent = taskInput;
-    newTask.classList.add("text-green-600");
-    document.getElementById("task-list").appendChild(newTask);
-    taskInput.value = "";
-  }
-});
-const addbtn = document.getElementById("add-task-btn"); //tıklama
-let taskInput = document.getElementById("task-input"); // değeri al işle
-let tasklist = document.getElementById("task-list"); //gelen değeri listele
-
-function addtask() {
-  const taskText = taskInput.value.trim(); //value sagdan soldan trim ile boşlukları sil
+const addBtn = document.getElementById("add-task-btn"); // Ekleme butonu
+const taskInput = document.getElementById("task-input"); // Input alanı
+const taskList = document.getElementById("task-list"); // Liste alanı
+module.exports = { addTask };
+function addTask() {
+  const taskText = taskInput.value.trim(); // Boşlukları temizle
   if (taskText !== "") {
     const taskItem = document.createElement("li");
-    let taskItemclasses = "flex justify-around hover:bg";
-    taskItem.classList.add(taskItemclasses);
+    taskItem.classList.add(
+      "flex",
+      "justify-between",
+      "p-2",
+      "bg-cyan-200",
+      "hover:opacity-90",
+      "my-1.5"
+    );
 
     // Task metni
     const taskSpan = document.createElement("span");
-    taskSpan.classList.add("text-green-600");
+    taskSpan.classList.add("text-green-600", "content-center");
     taskSpan.textContent = taskText;
+
+    // Checkbox (Tamamlama işlevi)
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        taskSpan.classList.add("line-through", "text-red-600");
+        taskSpan.classList.remove("text-green-600");
+      } else {
+        taskSpan.classList.remove("line-through", "text-red-600");
+        taskSpan.classList.add("text-green-600");
+      }
+    });
 
     // Silme butonu
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("delete-btn");
-    deleteButton.onclick = function () {
-      taskItem.remove();
-    };
-    // Task item'a task metni ve silme butonunu ekle
+    deleteButton.textContent = "❌";
+    deleteButton.classList.add(
+      "delete-btn",
+      "text-red-600",
+      "ml-2",
+      "hover:opacity-70"
+    );
+    deleteButton.addEventListener("click", () => taskItem.remove());
+
+    // Task öğesine elemanları ekle
     taskItem.appendChild(taskSpan);
+    taskItem.appendChild(checkbox);
     taskItem.appendChild(deleteButton);
 
     // Listeye task ekle
-    tasklist.appendChild(taskItem);
+    taskList.appendChild(taskItem);
 
-    // Inputu temizle
+    // Input'u temizle
     taskInput.value = "";
   }
 }
 // Add task butonuna event listener ekle
-addbtn.addEventListener("click", addtask);
+addBtn.addEventListener("click", addTask);
 
 // Enter tuşu ile de task ekleme
 taskInput.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    addtask();
+    addTask();
   }
+});
+
+// Filtreleme fonksiyonu
+document.querySelectorAll(".filter-tasks button").forEach((button) => {
+  button.addEventListener("click", function () {
+    const filter = this.getAttribute("data-filter");
+    document.querySelectorAll("#task-list li").forEach((task) => {
+      const isCompleted = task
+        .querySelector("span")
+        .classList.contains("line-through");
+      if (filter === "all") {
+        task.style.display = "flex";
+      } else if (filter === "active" && !isCompleted) {
+        task.style.display = "flex";
+      } else if (filter === "completed" && isCompleted) {
+        task.style.display = "flex";
+      } else {
+        task.style.display = "none";
+      }
+    });
+  });
 });

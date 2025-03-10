@@ -8,20 +8,19 @@
   </head>
   <body>
     <div class="container max-w-2xl m-auto p-5 shadow-2xl rounded-2xl">
-      <h1 class="p-2 mb-2.5 text-2xl content-center text-fuchsia-900">
+      <h1 class="p-2 mb-2.5 text-2xl text-center text-fuchsia-900">
         My Todo List
       </h1>
       <hr class="text-fuchsia-900" />
-      <!-- Add Task-->
+
+      <!-- Add Task -->
       <div class="add-task grid grid-cols-6 gap-4 mb-3 p-3">
         <input
           class="focus:outline-2 focus:outline-emerald-500 p-2 col-span-5"
           id="task-input"
-          required
           placeholder="Enter new task"
           type="text"
         />
-        <!-- required belitmek yanlış çünkü required sace formlarda submit olayı gerçekleşirken çalışır-->
         <button
           class="text-gray-600 col-span-1 text-4xl hover:text-green-400"
           id="add-task-btn"
@@ -29,41 +28,27 @@
           +
         </button>
       </div>
+
       <!-- Todo List -->
       <ul
         id="task-list"
-        class="my-2.5 h-60 bg-yellow-100 p-5 rounded font-mono"
-      >
-        <!-- Tasks will be dynamically added here -->
-        <li
-          class="flex justify-between p-2 bg-cyan-200 hover:opacity-90 my-1.5"
-        >
-          <span class="text-red-600 line-through content-center"
-            >completed task</span
-          >
-          <input type="checkbox" checked="true"/>
-        </li>
-        <li
-          class="flex justify-between p-2 bg-cyan-200 hover:opacity-90 my-1.5"
-        >
-          <span class="text-green-600 content-center">active task</span>
-          <input type="checkbox"  />
-        </li>
-      </ul>
+        class="my-2.5 h-60 bg-yellow-100 p-5 rounded font-mono overflow-auto"
+      ></ul>
 
-      <!-- Filter Task-->
+      <!-- Filter Tasks -->
       <div class="filter-tasks p-2 flex justify-center text-xl gap-1.5">
         <button data-filter="all" class="text-blue-600 hover:underline">
           All
         </button>
-        <button data-filter="active" class="text-red-600 hover:underline">
+        <button data-filter="completed" class="text-red-600 hover:underline">
           Done
         </button>
-        <button data-filter="completed" class="text-green-600 hover:underline">
+        <button data-filter="active" class="text-green-600 hover:underline">
           Active
         </button>
       </div>
     </div>
+
     <script src="./src/app.js"></script>
   </body>
 </html>
